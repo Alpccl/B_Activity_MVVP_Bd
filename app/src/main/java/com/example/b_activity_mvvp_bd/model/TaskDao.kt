@@ -13,7 +13,7 @@ import androidx.room.*
 //depende del auto Completador Abort Salta la erronea y Aborta
     //Ignore realiza importr tareas y omite las tareas con errores
 //inserta lista de tareas
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllTask(listTask: List<TaskEntity>)
 
     //Update
@@ -29,7 +29,7 @@ import androidx.room.*
 
 //selecciona informacion
     @Query("SELECT * FROM task_table")
-    fun getAllTask(): LiveData<List<TaskEntity>>
+    fun getAllTASK(): LiveData<List<TaskEntity>>
 
     //Obtiene informaciom por titulo y solo entrega 1 resultado
     @Query("SELECT * FROM task_table WHERE title = :title LIMIT 1")

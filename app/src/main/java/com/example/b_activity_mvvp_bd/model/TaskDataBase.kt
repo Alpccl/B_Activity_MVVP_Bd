@@ -1,5 +1,6 @@
 package com.example.b_activity_mvvp_bd.model
 
+import android.app.Application
 import android.content.Context
 import android.provider.CalendarContract
 import androidx.room.Database
@@ -9,6 +10,7 @@ import androidx.room.RoomDatabase
 
 
 @Database(entities = [TaskEntity::class], version = 1 )
+
 abstract class TaskDataBase : RoomDatabase() {
 
     abstract fun getTaskDao(): TaskDao
@@ -23,10 +25,10 @@ abstract class TaskDataBase : RoomDatabase() {
                 return tempInstances
             }
             synchronized(this){
-                val instance : Room.databaseBuilder(
-                context.applicationContext
-                TaskDataBase::class.java
-                "Task_db")
+                val instance = Room.databaseBuilder(
+                context.applicationContext,
+                TaskDataBase::class.java,
+                    "Task_db")
                 .build()
                 INSTANCE = instance
                 return instance
